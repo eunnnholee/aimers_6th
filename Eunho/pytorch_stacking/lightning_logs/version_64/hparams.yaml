@@ -1,0 +1,180 @@
+target:
+- 임신 성공 여부
+continuous_cols:
+- 임신 시도 또는 마지막 임신 경과 연수
+- 배란 자극 여부
+- 단일 배아 이식 여부
+- 착상 전 유전 검사 사용 여부
+- 착상 전 유전 진단 사용 여부
+- 남성 주 불임 원인
+- 남성 부 불임 원인
+- 여성 주 불임 원인
+- 여성 부 불임 원인
+- 부부 주 불임 원인
+- 부부 부 불임 원인
+- 불명확 불임 원인
+- 불임 원인 - 난관 질환
+- 불임 원인 - 남성 요인
+- 불임 원인 - 배란 장애
+- 불임 원인 - 자궁경부 문제
+- 불임 원인 - 자궁내막증
+- 불임 원인 - 정자 농도
+- 불임 원인 - 정자 운동성
+- 불임 원인 - 정자 형태
+- 클리닉 내 총 시술 횟수
+- IVF 시술 횟수
+- DI 시술 횟수
+- 총 임신 횟수
+- IVF 임신 횟수
+- DI 임신 횟수
+- 총 출산 횟수
+- IVF 출산 횟수
+- DI 출산 횟수
+- 총 생성 배아 수
+- 미세주입된 난자 수
+- 미세주입에서 생성된 배아 수
+- 이식된 배아 수
+- 미세주입 배아 이식 수
+- 저장된 배아 수
+- 미세주입 후 저장된 배아 수
+- 해동된 배아 수
+- 해동 난자 수
+- 수집된 신선 난자 수
+- 저장된 신선 난자 수
+- 혼합된 난자 수
+- 파트너 정자와 혼합된 난자 수
+- 기증자 정자와 혼합된 난자 수
+- 동결 배아 사용 여부
+- 신선 배아 사용 여부
+- 기증 배아 사용 여부
+- 대리모 여부
+- PGD 시술 여부
+- PGS 시술 여부
+- 난자 혼합 경과일
+- 배아 이식 경과일
+- 배아 해동 경과일
+- 시술_임신
+- 배아생성이유_기증용
+- 배아생성이유_난자 저장용
+- 배아생성이유_배아 저장용
+- 배아생성이유_현재 시술용
+categorical_cols:
+- 시술 시기 코드
+- 시술 당시 나이
+- 배란 유도 유형
+- 난자 출처
+- 정자 출처
+- 난자 기증자 나이
+- 정자 기증자 나이
+- 시술유형_통합
+date_columns: []
+encode_date_columns: true
+validation_split: 0.2
+continuous_feature_transform: null
+normalize_continuous_features: false
+quantile_noise: 0
+num_workers: 0
+pin_memory: true
+handle_unknown_categories: true
+handle_missing_values: true
+pickle_protocol: 2
+dataloader_kwargs: {}
+task: classification
+head: LinearHead
+head_config:
+  layers: ''
+embedding_dims:
+- - 8
+  - 4
+- - 8
+  - 4
+- - 3
+  - 2
+- - 4
+  - 2
+- - 5
+  - 3
+- - 6
+  - 3
+- - 8
+  - 4
+- - 10
+  - 5
+embedding_dropout: 0.05
+batch_norm_continuous_input: false
+learning_rate: 0.001
+loss: CrossEntropyLoss
+metrics:
+- accuracy
+metrics_prob_input:
+- false
+metrics_params:
+- sub_params_list:
+  - task: multiclass
+    num_classes: 2
+    top_k: 1
+target_range: null
+virtual_batch_size: null
+seed: 42
+_module_src: models.gandalf
+_model_name: GANDALFModel
+_backbone_name: GANDALFBackbone
+_config_name: GANDALFConfig
+gflu_stages: 6
+gflu_dropout: 0.1
+gflu_feature_init_sparsity: 0.3
+learnable_sparsity: true
+batch_size: 4096
+data_aware_init_batch_size: 2000
+fast_dev_run: false
+max_epochs: 20
+min_epochs: 1
+max_time: null
+accelerator: auto
+devices: -1
+devices_list: null
+accumulate_grad_batches: 1
+auto_lr_find: false
+auto_select_gpus: true
+check_val_every_n_epoch: 1
+gradient_clip_val: 0.0
+overfit_batches: 0.0
+deterministic: false
+profiler: null
+early_stopping: valid_loss
+early_stopping_min_delta: 0.001
+early_stopping_mode: min
+early_stopping_patience: 3
+early_stopping_kwargs: {}
+checkpoints: valid_loss
+checkpoints_path: saved_models
+checkpoints_every_n_epochs: 1
+checkpoints_name: null
+checkpoints_mode: min
+checkpoints_save_top_k: 1
+checkpoints_kwargs: {}
+load_best: true
+track_grad_norm: -1
+progress_bar: rich
+precision: '32'
+trainer_kwargs: {}
+optimizer: Adam
+optimizer_params: {}
+lr_scheduler: null
+lr_scheduler_params: {}
+lr_scheduler_monitor_metric: valid_loss
+categorical_dim: 8
+continuous_dim: 57
+output_dim: 2
+output_cardinality:
+- 2
+categorical_cardinality:
+- 8
+- 8
+- 3
+- 4
+- 5
+- 6
+- 8
+- 10
+embedded_cat_dim: 27
